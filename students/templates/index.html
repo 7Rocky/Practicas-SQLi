@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Student Grades</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="/static/css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="search-form-container">
+        <form action="/" method="get" class="search-form">
+{% if name %}
+          <input type="text" placeholder="Student name" name="name" value="{{ name }}">
+{% else %}
+          <input type="text" placeholder="Student name" name="name">
+{% endif %}
+          <input type="submit" value="Search">
+        </form>
+      </div>
+      <h1>Student Grades</h1>
+{% if grades %}
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Subject</th>
+            <th>Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+  {% for grade in grades %}
+          <tr>
+            <td>{{ grade.name }}</td>
+            <td>{{ grade.subject }}</td>
+            <td>{{ grade.grade }}</td>
+          </tr>
+  {% endfor %}
+        </tbody>
+      </table>
+{% else %}
+      <div class="no-data">No grades found for this student.</div>
+{% endif %}
+    </div>
+  </body>
+</html>
